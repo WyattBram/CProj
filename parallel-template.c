@@ -40,8 +40,12 @@ int readf(FILE *fp)
 	return 0;
 }
 
+
 int currentIndex = 0;
+int startIndex = 0;
 int total = 0;
+
+
 
 int num_substring(int)
 {
@@ -50,8 +54,8 @@ int num_substring(int)
 	int count;
 	int tmp;
 	currentIndex += n1/10;
-	printf("CI: %d",currentIndex);
-	for (i = 0; i <= (currentIndex-n2); i++){   
+
+	for (i = startIndex; i <= (currentIndex-n2); i++){   
 		count=0;
 		for(j = i,k = 0; k < n2; j++,k++){  /*search for the next string of size of n2*/  
 			if (*(s1+j)!=*(s2+k)){
@@ -65,6 +69,8 @@ int num_substring(int)
 			}                       
 		}
 	}
+	startIndex += n1/10;
+	total+= tmp;
 	pthread_mutex_unlock(&mlock);
 	return tmp;
 }
